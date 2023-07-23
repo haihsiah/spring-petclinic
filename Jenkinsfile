@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment{
+        SONARSERVER = 'sonarserver'
+  }
   stages {
     stage('Log Tool Version') {
       parallel {
@@ -15,6 +18,14 @@ java -version'''
           steps {
             fileExists 'pom.xml'
           }
+        }
+
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv("${SONARSERVER}") {
+                    sh 'mvn package sonar:sonar'
+                }
+            }
         }
 
       }
