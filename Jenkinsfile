@@ -28,7 +28,7 @@ java -version'''
 
     stage('Run JAR file') {
       steps {
-        sh 'java -jar target/*.jar'
+        sh 'java -jar target/*.jar --server.port=8083'
       }
     }
 
