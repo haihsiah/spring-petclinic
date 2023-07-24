@@ -29,15 +29,9 @@ java -version'''
       }
     }
 
-    stage('Build with Maven') {
-      steps {
-        sh 'mvn package'
-      }
-    }
-
     stage('Run JAR file') {
       steps {
-        sh 'nohup java -jar target/*.jar --server.port=8083 &'
+        sh 'JENKINS_NODE_COOKIE=dontKillMe nohup java -jar target/*.jar --server.port=8083 &'
       }
     }
 
