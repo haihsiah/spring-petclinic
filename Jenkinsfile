@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment{
-        SONARSERVER = 'sonarserver'
-  }
   stages {
     stage('Log Tool Version') {
       parallel {
@@ -21,11 +18,12 @@ java -version'''
         }
 
         stage('SonarQube analysis') {
-            steps {
-                withSonarQubeEnv("${SONARSERVER}") {
-                    sh 'mvn package sonar:sonar'
-                }
+          steps {
+            withSonarQubeEnv("${SONARSERVER}") {
+              sh 'mvn package sonar:sonar'
             }
+
+          }
         }
 
       }
@@ -39,9 +37,12 @@ java -version'''
 
     stage('Run JAR file') {
       steps {
-        sh 'java -jar target/*.jar --server.port=8083'
+        sh 'nohup java -jar target/*.jar --server.port=8083 &'
       }
     }
 
+  }
+  environment {
+    SONARSERVER = 'sonarserver'
   }
 }
