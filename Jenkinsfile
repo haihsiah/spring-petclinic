@@ -33,7 +33,4 @@ java -version'''
     }
 
   }
-  environment {
-    SONARSERVER = 'sonarserver'
-  }
 }
