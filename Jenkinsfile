@@ -17,21 +17,12 @@ java -version'''
           }
         }
 
-        stage('SonarQube analysis') {
-          steps {
-            withSonarQubeEnv("${SONARSERVER}") {
-              sh 'mvn package sonar:sonar'
-            }
-
-          }
-        }
-
       }
     }
 
-    stage('Run JAR file') {
+    stage('Ansible') {
       steps {
-        sh 'JENKINS_NODE_COOKIE=dontKillMe nohup java -jar target/*.jar --server.port=8083 &'
+        ansiblePlaybook(playbook: '/ansible-files/test_playbook.yml')
       }
     }
 
