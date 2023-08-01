@@ -20,6 +20,12 @@ java -version'''
       }
     }
 
+    stage('Build Jar') {
+      steps {
+        sh 'mvn package'
+      }
+    }
+
     stage('Ansible') {
       steps {
         ansiblePlaybook(playbook: '/ansible-files/test_playbook.yml')
