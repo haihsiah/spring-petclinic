@@ -30,7 +30,7 @@ java -version'''
       parallel {
         stage('print directory') {
           steps {
-            sh 'ls'
+            sh 'ls /target'
           }
         }
 
