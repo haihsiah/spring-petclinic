@@ -22,7 +22,7 @@ java -version'''
 
     stage('Ansible') {
       steps {
-        ansiblePlaybook(playbook: '/ansible-files/deploy_jar.yml', inventory: '/ansible-files/inventory.ini')
+        ansiblePlaybook(playbook: '/ansible-files/henk_test.yml', inventory: '/ansible-files/inventory.ini')
       }
     }
 
