@@ -19,7 +19,7 @@ java -version'''
 
         stage('print directory') {
           steps {
-            sh 'ls target'
+            sh 'ls'
           }
         }
 
