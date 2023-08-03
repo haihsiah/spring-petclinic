@@ -17,6 +17,12 @@ java -version'''
           }
         }
 
+        stage('print directory') {
+          steps {
+            sh 'ls target'
+          }
+        }
+
       }
     }
 
@@ -31,7 +37,7 @@ java -version'''
         stage('print current dir') {
           steps {
             sh '''ls
-ls /target'''
+ls target'''
           }
         }
 
