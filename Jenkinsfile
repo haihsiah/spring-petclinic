@@ -20,9 +20,26 @@ java -version'''
       }
     }
 
-    stage('Ansible') {
+    stage('build jar') {
       steps {
-        sh 'ansible-playbook -i /ansible-files/inventory.ini /ansible-files/deploy_jar.yml -vvv'
+        sh 'mvn package'
+      }
+    }
+
+    stage('print directory') {
+      parallel {
+        stage('print directory') {
+          steps {
+            sh 'ls'
+          }
+        }
+
+        stage('ansible') {
+          steps {
+            sh 'ansible-playbook -i /ansible-files/inventory.ini /ansible-files/deploy_jar.yml'
+          }
+        }
+
       }
     }
 
