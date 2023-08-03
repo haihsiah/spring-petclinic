@@ -22,7 +22,7 @@ java -version'''
 
     stage('Ansible') {
       steps {
-        ansiblePlaybook(playbook: '/ansible-files/deploy_jar.yml', inventory: '/ansible-files/inventory.ini', tags: '-vvv')
+        sh 'ansible-playbook -i /ansible-files/inventory.ini /ansible-files/deploy_jar.yml -vvv'
       }
     }
 
