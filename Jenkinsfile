@@ -28,9 +28,10 @@ java -version'''
 
     stage('print directory') {
       parallel {
-        stage('print directory') {
+        stage('print current dir') {
           steps {
-            sh 'ls /target'
+            sh '''ls
+ls /target'''
           }
         }
 
