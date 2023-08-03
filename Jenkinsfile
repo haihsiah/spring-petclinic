@@ -33,4 +33,7 @@ java -version'''
     }
 
   }
+  environment {
+    ANSIBLE_HOST_KEY_CHECKING = 'False'
+  }
 }
