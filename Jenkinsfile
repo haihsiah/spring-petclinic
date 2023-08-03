@@ -20,12 +20,6 @@ java -version'''
       }
     }
 
-    stage('Build Jar') {
-      steps {
-        sh 'mvn package'
-      }
-    }
-
     stage('Ansible') {
       steps {
         ansiblePlaybook(playbook: '/ansible-files/deploy_jar.yml', inventory: '/ansible-files/inventory.ini')
