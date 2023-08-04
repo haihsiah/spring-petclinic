@@ -17,12 +17,6 @@ java -version'''
           }
         }
 
-        stage('print directory') {
-          steps {
-            sh 'ls'
-          }
-        }
-
       }
     }
 
@@ -32,21 +26,9 @@ java -version'''
       }
     }
 
-    stage('print directory') {
-      parallel {
-        stage('print current dir') {
-          steps {
-            sh '''ls
-ls target'''
-          }
-        }
-
-        stage('ansible') {
-          steps {
-            sh 'ansible-playbook -i /ansible-files/inventory.ini /ansible-files/deploy_jar.yml'
-          }
-        }
-
+    stage('Ansible') {
+      steps {
+        sh 'ansible-playbook -i /ansible-files/inventory.ini /ansible-files/deploy_jar.yml'
       }
     }
 
